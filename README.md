@@ -1,3 +1,10 @@
+##this a a test repo
+
+just to learn for me how to build a luvi library with a shared C library. http://luvit.io
+successfully tested in Linux x64 env.
+
+
+
 # lit-libcjson
 this is originaly a fork from `lua-resty-libcjson` and turned it as a lit package see [luvit.io][http://luvit.io]
 
