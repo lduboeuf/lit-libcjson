@@ -18,7 +18,6 @@ local cjson = require('ffi-loader')(module.dir, "cJSON.h")
 
 local ok, newtab = pcall(require, "table.new")
 if not ok then newtab = function() 
-	p("kikou")
 	return {} 
 	
 	end
