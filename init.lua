@@ -1,8 +1,6 @@
 local ffi        = require "ffi"
 local ffi_new    = ffi.new
 local ffi_typeof = ffi.typeof
-local ffi_cdef   = ffi.cdef
-local ffi_load   = ffi.load
 local ffi_str    = ffi.string
 local ffi_gc     = ffi.gc
 local next       = next
@@ -12,15 +10,31 @@ local type       = type
 local pairs      = pairs
 local ipairs     = ipairs
 local null       = {}
-local cjson = require('ffi-loader')(module.dir, "cJSON.h")
+
+--local cjson = require('ffi-loader')(module.dir, "cJSON.h")
+
+
+--local cjson = require('ffi-loader')(module.dir, "cJSON.h")
+
+local names = {
+  ["Linux-x64"] = "libcjson.so"
+}
+
+ffi.cdef(module:load("cJSON.h"))
+
+local arch = ffi.os .. "-" .. ffi.arch
+--local path = arch .. "/" .. names[arch]
+--local cjson = ffi.load(module:load(arch .. "/" .. names[arch]))
+
+local cjson =  module:action(arch .. "/" .. names[arch], function (path)
+  return ffi.load(path)
+end)
 
 
 
 local ok, newtab = pcall(require, "table.new")
 if not ok then newtab = function() 
-	p("kikou")
 	return {} 
-	
 	end
  end
 --local cjson = ffi_load("libcjson")
